@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {checkUsername, checkPassword} from './validation';
 
-class Hello extends Component {
+class Form extends Component {
   constructor(props) {
     // required if we want to invoke `this.`
     super(props);
@@ -80,4 +80,4 @@ class Hello extends Component {
   }
 }
 
-export default Hello;
+export default Form;

@@ -1,9 +1,9 @@
-import Hello from './hello.jsx';
+import Form from './form.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 ReactDOM.render(
-  <Hello />,
+  <Form/>,
   document.getElementById("content")
 );
 
