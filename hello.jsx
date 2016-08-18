@@ -12,7 +12,8 @@ class Hello extends Component {
       username: '',
       password: '',
       usernameError: '',
-      passwordError: ''
+      passwordError: '',
+      submitButtonEnabled: false
     };
   }
 
@@ -20,22 +21,20 @@ class Hello extends Component {
     return <form onSubmit={this._onSubmit.bind(this)}>
       <div>
         <input type="text"
-               value={this.state.username}
-               onChange={this._onUsernameChanged.bind(this)}
+               onInput={this._onUsernameChanged.bind(this)}
                onBlur={this._checkUsername.bind(this)}
         />
         <span>{this.state.usernameError}</span>
       </div>
       <div>
         <input type="password"
-               value={this.state.password}
-               onChange={this._onPasswordChange.bind(this)}
+               onInput={this._onPasswordChange.bind(this)}
                onBlur={this._checkPassword.bind(this)}
         />
         <span>{this.state.passwordError}</span>
       </div>
       <div>
-        <button type="submit">注册</button>
+        <button type="submit" disabled={this.state.submitButtonEnabled ? '' : 'disabled'}>注册</button>
       </div>
       <hr />
       <div>
@@ -46,9 +45,13 @@ class Hello extends Component {
   }
 
   _onUsernameChanged(event) {
+    const username = event.target.value;
     this.setState({
-      username: event.target.value,
+      username: username,
       usernameError: ''
+    });
+    setTimeout(()=> {
+      this._determineIfEnableSubmitButton();
     });
   }
 
@@ -62,9 +65,13 @@ class Hello extends Component {
   }
 
   _onPasswordChange(event) {
+    let password = event.target.value;
     this.setState({
-      password: event.target.value,
+      password: password,
       passwordError: ''
+    });
+    setTimeout(()=> {
+      this._determineIfEnableSubmitButton();
     });
   }
 
@@ -80,6 +87,13 @@ class Hello extends Component {
   _onSubmit(event) {
     event.preventDefault();
     alert('submitted!');
+  }
+
+  _determineIfEnableSubmitButton() {
+    const canSubmit = checkUsername(this.state.username) && checkPassword(this.state.password);
+    this.setState({
+      submitButtonEnabled: canSubmit
+    });
   }
 }
 
