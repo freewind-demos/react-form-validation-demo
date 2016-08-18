@@ -1,7 +1,7 @@
 React State Demo
 ======================
 
-Use state in react component.
+Form validation with react.
 
 ```
 npm install
