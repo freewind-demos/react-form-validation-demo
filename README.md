@@ -1,5 +1,5 @@
-React State Demo
-======================
+React Form Validation Demo
+==========================
 
 Form validation with react.
 
